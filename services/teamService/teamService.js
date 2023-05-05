@@ -1,5 +1,4 @@
 function teamRandomizer({ numberOfTeams, users }) {
-    let teams = [];
     const shuffledUsers = shuffle(users);
 
     
