@@ -1,6 +1,7 @@
 const Discord = require('discord.js');
 const client = new Discord.Client();
 const { teamRandomizer } = require("./services/teamService/teamService");
+const { roll } = require("./services/rollService/rollService");
 require('dotenv').config();
 
 
@@ -9,9 +10,10 @@ client.on('ready', () => {
 });
 
 client.on('message', msg => {
+  
   if (msg.content == '!roll') {
-    const roll = Math.floor(Math.random() * 100) + 1;
-    msg.reply(`${roll}`);
+    const rollResult = roll();
+    msg.reply(`${rollResult}`);
     return;
   }
   if (msg.content.includes('!teams')) {
