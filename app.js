@@ -15,7 +15,11 @@ client.on('message', msg => {
     return;
   }
   if (msg.content == '!teams') {
-    const voiceChannel = msg.member.voice.channel;
+    const voiceChannel = msg?.member?.voice?.channel;
+    if(!voiceChannel){
+      msg.channel.send("You need to be in a voice channel to use this command.")
+      return;
+    }
     const channelMembers = voiceChannel.members.array();
 
     // Filter out the bot itself from the channel members array

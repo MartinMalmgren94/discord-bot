@@ -1,0 +1,13 @@
+
+[Unit]
+Description=Discord bot gibbesternator
+After=network-online.target
+
+[Service]
+WorkingDirectory=/home/kjellroot/discord-bot
+ExecStart=/usr/bin/npm start
+Restart=on-failure
+User=kjellroot
+
+[Install]
+WantedBy=multi-user.target
