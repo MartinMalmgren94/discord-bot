@@ -12,11 +12,11 @@ client.on('ready', () => {
 
 client.on('message', message => {
   
-  if (msg.content == '!roll') {
+  if (message.content == '!roll') {
     rollMessageRoute({ message })
     return;
   }
-  if (msg.content.includes('!teams')) {
+  if (message.content.includes('!teams')) {
     teamsMessageRoute({ message })
     return;
   }
