@@ -3,6 +3,7 @@ const client = new Discord.Client();
 const { rollMessageRoute } = require("./messageRoutes/roll/rollMessageRoute");
 const { teamsMessageRoute } = require("./messageRoutes/teams/teamsMessageRoute");
 const { roleMessageRoute } = require("./messageRoutes/role/roleMessageRoute");
+const { helpMessageRoute } = require('./messageRoutes/help/helpMessageRoute');
 require('dotenv').config();
 
 
@@ -11,16 +12,26 @@ client.on('ready', () => {
 });
 
 client.on('message', message => {
-  if (message.content == '!roll') {
-    rollMessageRoute({ message });
-    return;
+  switch (message.content) {
+    case "!roll":
+      rollMessageRoute({ message });
+      break;
+
+    case "!role":
+      roleMessageRoute({ message });
+      break;
+
+    case "!help":
+      helpMessageRoute({ message });
+      break;
+    
+    default:
+      break;
   }
-  if (message.content.includes('!teams')) {
+
+  if (message.content.substring(0, 6) == '!teams') {
     teamsMessageRoute({ message });
-    return;
-  }
-  if(message.content == '!role'){
-    roleMessageRoute({ message });
+    console.log("team");
     return;
   }
 });
