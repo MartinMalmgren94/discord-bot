@@ -31,7 +31,6 @@ client.on('message', message => {
 
   if (message.content.substring(0, 6) == '!teams') {
     teamsMessageRoute({ message });
-    console.log("team");
     return;
   }
 });
