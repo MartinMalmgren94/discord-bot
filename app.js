@@ -4,6 +4,8 @@ const { rollMessageRoute } = require("./messageRoutes/roll/rollMessageRoute");
 const { teamsMessageRoute } = require("./messageRoutes/teams/teamsMessageRoute");
 const { roleMessageRoute } = require("./messageRoutes/role/roleMessageRoute");
 const { helpMessageRoute } = require('./messageRoutes/help/helpMessageRoute');
+const { kickMessageRoute } = require('./messageRoutes/kick/kickMessageRoute');
+
 require('dotenv').config();
 
 
@@ -32,6 +34,10 @@ client.on('message', message => {
   if (message.content.substring(0, 6) == '!teams') {
     teamsMessageRoute({ message });
     return;
+  }
+
+  if(message.content.substring(0, 5) == '!kick'){
+    kickMessageRoute({ message, client })
   }
 });
 
