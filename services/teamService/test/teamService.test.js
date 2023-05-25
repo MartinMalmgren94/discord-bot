@@ -1,4 +1,4 @@
-const { teamRandomizer } = require("../teamService");
+const { teamRandomizer, buildResponseString } = require("../teamService");
 const { teamOfFour, teamOfTwo, teamOfSix, teamOfFifteen } = require("./mock");
 
 test('testing senario with 2 teams with 2 players in each', () => {
@@ -42,3 +42,10 @@ test('testing senario with 3 teams with 15 player in each', () => {
     expect(result[0]?.includes(player => result[2]?.includes(player)))
     expect(result[1]?.includes(player => result[2]?.includes(player)))
 });
+
+test('testing buildingResponseString', () => {
+    const teams = teamRandomizer({ numberOfTeams: 2, users: teamOfFour });
+    const result = buildResponseString({ teams });
+    expect(result).toBeDefined();
+    expect(result).toHaveLength(49);
+})
