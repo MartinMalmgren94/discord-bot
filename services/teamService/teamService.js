@@ -1,8 +1,8 @@
-function teamRandomizer({ numberOfTeams, users }) {
+function teamRandomizer({ numberOfTeams, users, options }) {
   const shuffledUsers = shuffle(users);
 
 
-  return divideArrayIntoNParts({ originalArray: shuffledUsers, n: numberOfTeams })
+  return options == 'dota2' ? divideArrayIntoNPartsDota2({ originalArray: shuffledUsers }) : divideArrayIntoNParts({ originalArray: shuffledUsers, n: numberOfTeams })
 }
 
 function divideArrayIntoNParts({ originalArray, n }) {
@@ -18,6 +18,34 @@ function divideArrayIntoNParts({ originalArray, n }) {
 
   return resultArray;
 }
+
+function divideArrayIntoNPartsDota2({ originalArray }) {
+  const validSubarrayLengths = [5,3,2,1];
+  const resultArray = []; // initialize an empty array to store the subarrays
+
+  let currentIndex = 0;
+  while (currentIndex < originalArray.length) {
+    const remainingElements = originalArray.length - currentIndex;
+    let subArrayLength;
+
+    // Find the largest valid subarray length that fits within the remaining elements
+    for (const length of validSubarrayLengths) {
+      if (remainingElements >= length) {
+        subArrayLength = length;
+        break;
+      }
+    }
+
+    const subArray = originalArray.slice(currentIndex, currentIndex + subArrayLength);
+    
+    resultArray.push(subArray);
+
+    currentIndex += subArrayLength;
+  }
+
+  return resultArray;
+}
+
 
 function shuffle(array) {
   let currentIndex = array.length, randomIndex;
