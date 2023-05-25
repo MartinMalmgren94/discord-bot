@@ -9,7 +9,7 @@ function teamsMessageRoute({ message }){
   
   const channelMembers = voiceChannel.members.array();
   const options = message.content.includes('-dota2') ? 'dota2' : undefined;
-  const amountOfTeams = parseInt(message.content.split("!teams ")[1].replace(/ /g, "")) || 2;
+  const amountOfTeams = parseInt(message?.content?.split("!teams ")[1]?.replace(/ /g, "")) || 2;
   // Filter out the bot itself from the channel members array
   const channelUsers = channelMembers.filter(member => !member?.user?.bot)
     .map(member => member?.user?.username);

@@ -37,3 +37,23 @@ test('should send the correct response if voiceChannel is truthy', () => {
         expect.stringMatching(/\*\*Team 1:\*\*\nHasse\n\*\*Team 2:\*\*\nNasse|\*\*Team 1:\*\*\nNasse\n\*\*Team 2:\*\*\nHasse/)
     ); // Replace 'Your response string' with the expected response
 });
+
+test('should send the correct response if voiceChannel is truthy with dota2 options', () => {
+    // Set up the necessary mocks or stubs
+    const members = new MockCollection();
+    members.set(1, {user: { username: "Hasse"}});
+    members.set(2, {user: { username: "Nasse"}});
+    
+    const message = {
+        member: { voice: { channel: { members } } },
+        content: '!teams -dota2',
+        channel: { send: jest.fn() }
+    };
+    teamsMessageRoute({ message });
+    const expectedString = /\*\*Team 1:\*\*\r?\nNasse\r?\nHasse|\*\*Team 1:\*\*\r?\nHasse\r?\nNasse/;
+
+    expect(message.channel.send).toHaveBeenCalledTimes(1);
+    expect(message.channel.send).toHaveBeenCalledWith(
+        expect.stringMatching(expectedString)
+    ); // Replace 'Your response string' with the expected response
+});
