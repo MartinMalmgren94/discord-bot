@@ -14,7 +14,8 @@ client.on('ready', () => {
 });
 
 client.on('message', message => {
-  switch (message.content) {
+  const messageContent = message.content.toLocaleLowerCase()
+  switch (messageContent) {
     case "!roll":
       rollMessageRoute({ message });
       break;
@@ -31,12 +32,12 @@ client.on('message', message => {
       break;
   }
 
-  if (message.content.substring(0, 6) == '!teams') {
+  if (messageContent.substring(0, 6) == '!teams') {
     teamsMessageRoute({ message });
     return;
   }
 
-  if(message.content.substring(0, 5) == '!kick'){
+  if(messageContent.substring(0, 5) == '!kick'){
     kickMessageRoute({ message, client })
   }
 });
