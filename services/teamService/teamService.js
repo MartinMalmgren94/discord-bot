@@ -2,7 +2,7 @@ function teamRandomizer({ numberOfTeams, users, options }) {
   const shuffledUsers = shuffle(users);
 
 
-  return options == 'dota2' || 'dota' ? divideArrayIntoNPartsDota2({ originalArray: shuffledUsers }) : divideArrayIntoNParts({ originalArray: shuffledUsers, n: numberOfTeams })
+  return options == 'dota2' ? divideArrayIntoNPartsDota2({ originalArray: shuffledUsers }) : divideArrayIntoNParts({ originalArray: shuffledUsers, n: numberOfTeams })
 }
 
 function divideArrayIntoNParts({ originalArray, n }) {
