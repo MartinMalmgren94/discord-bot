@@ -9,6 +9,9 @@ function helpMessageRoute({ message }){
 
     !roll
     *Randoms a number between 1-100*
+
+    !hero
+    *Randoms a hero for you.
     `;
     message.reply(`${helpText}`);
 }
