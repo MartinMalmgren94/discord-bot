@@ -5,6 +5,7 @@ const { teamsMessageRoute } = require("./messageRoutes/teams/teamsMessageRoute")
 const { roleMessageRoute } = require("./messageRoutes/role/roleMessageRoute");
 const { helpMessageRoute } = require('./messageRoutes/help/helpMessageRoute');
 const { kickMessageRoute } = require('./messageRoutes/kick/kickMessageRoute');
+const { heroMessageRoute } = require('./messageRoutes/hero/heroMessageRoute');
 
 require('dotenv').config();
 
@@ -26,6 +27,10 @@ client.on('message', message => {
 
     case "!help":
       helpMessageRoute({ message });
+      break;
+
+    case "!hero":
+      heroMessageRoute({ message });
       break;
     
     default:
