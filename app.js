@@ -40,6 +40,9 @@ client.on('message', message => {
   if(messageContent.substring(0, 5) == '!kick'){
     kickMessageRoute({ message, client })
   }
+  if(messageContent.substring(0, 10) == '!roll -all'){
+    rollMessageRoute({ message, options: "-all" });
+  }
 });
 
 client.login(process.env.DISCORD_TOKEN)
