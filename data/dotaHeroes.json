@@ -867,6 +867,13 @@
         "primary_attribute": "Agility",
         "attack_type": "Ranged",
         "roles": ["Carry", "Support", "Nuker", "Disabler"]
+      },
+      {
+        "id": 125,
+        "name": "Rez",
+        "primary_attribute": "Agility",
+        "attack_type": "Melee",
+        "roles": ["Carry", "Nuker", "Disabler", "Escape"]
       }
     ]
   }
